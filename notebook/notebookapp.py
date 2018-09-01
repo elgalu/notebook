@@ -1728,15 +1728,16 @@ class NotebookApp(JupyterApp):
                                           new=self.webbrowser_open_new)
                 threading.Thread(target=b).start()
 
-        if self.token and self._token_generated:
-            # log full URL with generated token, so there's a copy/pasteable link
-            # with auth info.
-            self.log.critical('\n'.join([
-                '\n',
-                'Copy/paste this URL into your browser when you connect for the first time,',
-                'to login with a token:',
-                '    %s' % self.display_url,
-            ]))
+# Logging the token to stdout/stderr is a security incident so disabled in our fork
+#         if self.token and self._token_generated:
+#             # log full URL with generated token, so there's a copy/pasteable link
+#             # with auth info.
+#             self.log.critical('\n'.join([
+#                 '\n',
+#                 'Copy/paste this URL into your browser when you connect for the first time,',
+#                 'to login with a token:',
+#                 '    %s' % self.display_url,
+#             ]))
 
         self.io_loop = ioloop.IOLoop.current()
         if sys.platform.startswith('win'):
